@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI Cyber Defense Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <!-- ===================================== -->
+    <!-- HEADER -->
+    <!-- ===================================== -->
+
+    <header class="header">
+
+        <h1>AI Cyber Defense Dashboard</h1>
+
+        <p>
+            Unified Threat Monitoring &
+            Phishing Detection Platform
+        </p>
+
+    </header>
+
+    <!-- ===================================== -->
+    <!-- STATS SECTION -->
+    <!-- ===================================== -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h2>{{ alerts|length }}</h2>
+            <p>Total Alerts</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>ACTIVE</h2>
+            <p>System Status</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>AI ENABLED</h2>
+            <p>Threat Detection</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>REAL-TIME</h2>
+            <p>Monitoring Mode</p>
+        </div>
+
+    </div>
+
+    <!-- ===================================== -->
+    <!-- MAIN GRID -->
+    <!-- ===================================== -->
+
+    <div class="main-grid">
+
+        <!-- ===================================== -->
+        <!-- LEFT SIDE -->
+        <!-- ===================================== -->
+
+        <div class="left-panel">
+
+            <!-- ===================================== -->
+            <!-- PHISHING ANALYZER -->
+            <!-- ===================================== -->
+
+            <div class="card">
+
+                <h2>Phishing Email Analyzer</h2>
+
+                <form method="POST">
+
+                    <textarea
+                        name="email_text"
+                        placeholder="Paste suspicious email here..."
+                        rows="10"
+                    >{{ email_text }}</textarea>
+
+                    <button type="submit">
+                        Analyze Email
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- ===================================== -->
+            <!-- ANALYSIS RESULT -->
+            <!-- ===================================== -->
+
+            {% if result %}
+
+            <div class="card">
+
+                <h2>Analysis Result</h2>
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ result.label }}
+                </p>
+
+                <p>
+                    <strong>Risk Score:</strong>
+                    {{ result.risk_score }}%
+                </p>
+
+                <p>
+                    <strong>Threat Level:</strong>
+                    {{ result.threat_level }}
+                </p>
+
+                <p>
+                    <strong>Phishing Probability:</strong>
+                    {{ result.phishing_probability }}
+                </p>
+
+                <p>
+                    <strong>Safe Probability:</strong>
+                    {{ result.safe_probability }}
+                </p>
+
+                <h3>Detected Indicators</h3>
+
+                <ul>
+
+                    {% for indicator in result.indicators %}
+
+                    <li>{{ indicator }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+            {% endif %}
+
+            <!-- ===================================== -->
+            <!-- PROCESS MONITOR -->
+            <!-- ===================================== -->
+
+            <div class="card">
+
+                <h2>Live Process Monitor</h2>
+
+                <div class="log-box">
+
+                    <p>✔ Monitoring running processes...</p>
+                    <p>✔ CPU telemetry active</p>
+                    <p>✔ Suspicious process detection enabled</p>
+                    <p>✔ Real-time anomaly logging active</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================== -->
+        <!-- RIGHT SIDE -->
+        <!-- ===================================== -->
+
+        <div class="right-panel">
+
+            <!-- ===================================== -->
+            <!-- LIVE ALERTS -->
+            <!-- ===================================== -->
+
+            <div class="card">
+
+                <h2>Live Threat Feed</h2>
+
+                {% if alerts %}
+
+                    {% for alert in alerts %}
+
+                    <div class="alert-box">
+
+                        <h3>{{ alert.title }}</h3>
+
+                        <p>{{ alert.description }}</p>
+
+                        {% if alert.risk_score %}
+                        <p>
+                            <strong>Risk Score:</strong>
+                            {{ alert.risk_score }}%
+                        </p>
+                        {% endif %}
+
+                        {% if alert.threat_level %}
+                        <p>
+                            <strong>Threat Level:</strong>
+                            {{ alert.threat_level }}
+                        </p>
+                        {% endif %}
+
+                        {% if alert.time %}
+                        <p class="timestamp">
+                            {{ alert.time }}
+                        </p>
+                        {% endif %}
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <p>No alerts detected.</p>
+
+                {% endif %}
+
+            </div>
+
+            <!-- ===================================== -->
+            <!-- ANOMALY SECTION -->
+            <!-- ===================================== -->
+
+            <div class="card">
+
+                <h2>Anomaly Detection</h2>
+
+                <div class="log-box">
+
+                    <p>✔ Login anomaly engine active</p>
+                    <p>✔ Device fingerprint tracking enabled</p>
+                    <p>✔ Repeated access detection enabled</p>
+                    <p>✔ Behavioral monitoring active</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

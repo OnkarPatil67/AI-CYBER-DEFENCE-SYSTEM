@@ -1,0 +1,12 @@
+__pycache__/
+.DS_Store
+Outputs/
+
+*.pkl
+*.pt
+*.safetensors
+
+results/
+distilbert_final_model/
+
+final_preprocessed_emails.csv

@@ -1,0 +1,20 @@
+[
+    {
+        "title": "High CPU Process Detected",
+        "description": "Google Chrome Helper (Renderer) using 80.4% CPU",
+        "level": "HIGH",
+        "time": "2026-05-18 20:35:20.455604"
+    },
+    {
+        "title": "High CPU Process Detected",
+        "description": "Google Chrome Helper (Renderer) using 81.0% CPU",
+        "level": "HIGH",
+        "time": "2026-05-18 20:35:10.393945"
+    },
+    {
+        "title": "High CPU Process Detected",
+        "description": "Google Chrome Helper (Renderer) using 82.5% CPU",
+        "level": "HIGH",
+        "time": "2026-05-18 20:29:18.535539"
+    }
+]
